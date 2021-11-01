@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/integration
+            emailjs.init('user_Dm3UqrmJwTQFdmV8sfKw3');
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+                emailjs.sendForm('service_k4cnmnk', 'template_ydyiukl', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                    });
+            });
+        }
+    </script>
+
+
+</head>
+<body>
+    <form id="contact-form" action="#">
+        <input type="hidden" name="contact_number">
+        <div>
+            <p>Имя</p>
+           <input placeholder="Введите имя" type="text" name="to_name">
+        </div>
+        <div>
+            <p>Почта</p>
+           <input placeholder="Почта" type="email" name="email">
+        </div>
+        <div>
+            <p>Пароль</p>
+            <input type="password" name="password">
+        </div>
+        <div>
+            <p>Телефон</p>
+            <input type="tel" name="phone">
+        </div>
+        <div>
+            <p>Пол</p>
+            <p>
+            <label>
+                <input checked type="radio" name="gender"> Мужской
+            </label>
+            </p>
+            <p>
+            <label>
+                <input type="radio" name="gender"> Женский
+            </label>
+            </p>
+        </div>
+        <div>
+            <p>
+                Имущество
+            </p>
+            <p>
+            <input checked type="checkbox" name="bike"> велик
+            </p>
+            <p>
+                <input type="checkbox" name="car"> машина
+            </p>
+            <p>
+                <input type="checkbox" name="house"> дом
+            </p>
+        </div>
+        <div>
+            <p>
+                Прикрепить фото
+            </p>
+            <input type="file">
+        </div>
+        <div>
+            <p>
+                Любимый цвет
+            </p>
+            <select name="color" >
+                <option value="red">Красный</option>
+                <option value="green">Зеленый</option>
+                <option value="yellow">Желтый</option>
+            </select>
+        </div>
+        <div>
+            <p>
+                Дополнительная информация
+            </p>
+            <textarea></textarea>
+        </div>
+        <div>
+            <p>Действия</p>
+            <button type="submit">Отправить</button>
+            <button type="reset">Очистить</button>
+        </div>
+    </form>
+    
+</body>
+</html>
